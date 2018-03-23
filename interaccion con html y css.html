@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>interaccion con html y css</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style type="text/css">
+		.imagen
+		{
+			border-radius: 50px;
+			border-style: solid;
+			opacity: 0.5;
+		}
+	</style>
+</head>
+<body>
+	<br>
+	<div class="container">
+		<table class="table table-hover">
+			<tbody>
+				<tr>
+					<td><button class="btn btn-success" id="btn1">cambiar descripcion</button></td>
+					<td><button class="btn btn-success" id="btn2">deshacer</button></td>
+				</tr>
+				<tr>
+					<td><button class="btn btn-primary" id="btn3">cambiar imagen</button></td>
+					<td><button class="btn btn-primary" id="btn4">deshacer</button></td>
+				</tr>
+				<tr>
+					<td><button class="btn btn-info" id="btn5">agregar antes</button></td>
+					<td><button class="btn btn-info" id="btn666">agregar con textnode</button></td>
+					<td><button class="btn btn-info" id="btn6">deshacer</button></td>
+				</tr>
+				<tr>
+					<td><button class="btn btn-danger" id="btn7">agregar despues</button></td>
+					<td><button class="btn btn-danger" id="btn000">agregar con textnode</button></td>
+					<td><button class="btn btn-danger" id="btn8">deshacer</button></td>
+				</tr>
+				<tr>
+					<td><button class="btn btn-warning" id="btn9">agregar arriba</button></td>
+					<td><button class="btn btn-warning" id="btn10">deshacer</button></td>
+				</tr>
+				<tr>
+					<td><button class="btn" id="btn11">agregar abajo</button></td>
+					<td><button class="btn" id="btn12">deshacer</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="container">
+		<center>
+			<img class="img-responsive" id="img1" src="slide1.jpg" style="width: 500px;height: 300px;"></img>
+			<p id="descripcion" style="width: 400px;">bonita imagen</p>
+		</center>
+	</div>
+	<br><br><br>
+	<center><a href="www.google.com" target="_blank" id="enlace">pulsa aqui</a></center>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var original = $("#descripcion").text(); //con text() se obtiene el texto de la etiqueta
+			$("#btn1").click(function(){
+				$("#descripcion").text("imagen fea"); //con text(contenido) establecemos un texto nuevo a la etiqueta
+			});
+			$("#btn2").click(function(){
+				$("#descripcion").text(original);
+			});
+			$("#btn3").click(function(){
+				$("#img1").attr("src","slide2.jpg");
+			});
+			$("#btn4").click(function(){
+				$("#img1").attr("src","slide1.jpg");
+			});
+			$("#btn5").click(function(){
+				$("#descripcion").prepend("<b id='p1'>texto nuevo antes </b>"); //solo funciona con la etiqueta <b> <span> <strong> <i>
+			});
+			$("#btn666").click(function(){
+				$("#descripcion").prepend(document.createTextNode("texto nuevo antes ")); 
+			});
+			$("#btn6").click(function(){
+				$("#p1").remove();
+			});
+			$("#btn7").click(function(){
+				$("#descripcion").append("<b id='p2'> texto nuevo despues</b>"); //solo funciona con la etiqueta <b> <span> <strong> <i>
+				$("#p2").css("color","red");
+			});
+			$("#btn000").click(function(){
+				$("#descripcion").append(document.createTextNode(" texto nuevo despues")); 
+			});
+			$("#btn8").click(function(){
+				$("#p2").remove();
+			});
+			$("#btn9").click(function(){
+				$("#descripcion").before('<button class="btn btn-success" id="nuevo">soy nuevo arriba</button>');
+			});
+			$("#btn10").click(function(){
+				$("#nuevo").remove();
+			});
+			$("#btn11").click(function(){
+				$("#descripcion").after('<button class="btn btn-primary" id="nuevo2">soy nuevo abajo</button>');
+			});
+			$("#btn12").click(function(){
+				$("#nuevo2").remove();
+			});
+
+			//enlace 
+			$("#enlace").click(function(e){
+				e.preventDefault(); //desactiva la accion de direccionamiento del href, haciendo que no haga nada
+			});
+
+			//agregar clase
+			$("#img1").on({
+				mouseover : function(){
+					$(this).addClass("imagen");
+					//$(this).toggleClass("imagen"); //combinacion de ambos
+				},
+				mouseout : function(){
+					$(this).removeClass("imagen");
+				}
+			});
+		});
+	</script>
+</body>
+</html>

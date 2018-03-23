@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>efectos visuales</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+	<br>
+	<div class="container">
+		<center><table class="table table-hover">
+			<tbody>
+				<tr>
+					<td><button class="btn btn-success" id="btn1">ocultar parrafo</button></td>
+					<td><button class="btn btn-success" id="btn2">mostrar parrafo</button></td>
+					<td><button class="btn btn-success" id="btn3">ocultar/mostrar</button></td>
+				</tr>
+				<tr>
+					<td><button class="btn btn-primary" id="btn4">cambiar estilo</button></td>
+					<td><button class="btn btn-primary" id="btn5">quitar estilo</button></td>
+				</tr>
+				<tr>
+					<td><button class="btn btn-warning" id="btn6">slideUp</button></td>
+					<td><button class="btn btn-warning" id="btn7">slideDown</button></td>
+					<td><button class="btn btn-warning" id="btn8">slideToggle</button></td>
+				</tr>
+				<tr>
+					<td><button class="btn btn-danger" id="btn9">fadeTo 50%</button></td>
+					<td><button class="btn btn-danger" id="btn10">fadeTo 100%</button></td>
+					<td><button class="btn btn-danger" id="btn11">fadeOut</button></td>
+					<td><button class="btn btn-danger" id="btn12">fadeIn</button></td>
+				</tr>
+			</tbody>
+		</table></center>
+	</div>
+	<br><hr><br>
+	<div class="container content">
+		<p style="width: 300px;float: left;">este es un pequeno parrafo con una imagenn a la derecha que es accionado mediante los botones de arriba todo esta hecho con jquery</p>
+		<img class="img-responsive" src="slide4.jpg">
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var estilo={
+				"background-color" : "green",
+				"border-style" : "solid"
+			};
+			//ocultar
+			$("#btn1").click(function(){
+				$(".content").hide(function(){alert("se oculto");});
+			});
+			//mostrar
+			$("#btn2").click(function(){
+				$(".content").show("fast"); //fast, slow y swing(aceleracion)
+			});
+			//ocultar/mostrar
+			$("#btn3").click(function(){
+				$(".content").toggle(2000);
+			});
+			//cambiar style
+			$("#btn4").click(function(){
+				$(".content").css(estilo);
+			});
+			//quitar style
+			$("#btn5").click(function(){
+				$(".content").css("border-style","none");
+				$(".content").css("background-color","white");
+			});
+			//slide up
+			$("#btn6").click(function(){
+				$(".content").slideUp(); //ocultar
+			});
+			//slide down
+			$("#btn7").click(function(){
+				$(".content").slideDown(); //mostrar
+			});
+			//slide toggle
+			$("#btn8").click(function(){
+				$(".content").slideToggle();
+			});
+			//fadeTo para cambiar la opacidad
+			$("#btn9").click(function(){
+				$(".content").fadeTo(2000,0.5); //fadeTo(tiempo de la accion,nivel de opacidad)
+			});
+			$("#btn10").click(function(){
+				$(".content").fadeTo(2000,1); //fadeTo(tiempo de la accion,nivel de opacidad)
+			});
+			//fadeOut es para ocultar un elemento como hide()
+			$("#btn11").click(function(){
+				$(".content").fadeOut(3000);
+			});
+			//fadeIn es para mostrar un elemento como show()
+			$("#btn12").click(function(){
+				$(".content").fadeIn("fast");
+			});
+		});
+	</script>
+</body>
+</html>

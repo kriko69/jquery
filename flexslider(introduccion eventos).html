@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jquery sin saber Jquery</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="stylesheet" type="text/css" href="flexslider/flexslider.css">
+	<style type="text/css">
+
+	</style>
+</head>
+<body>
+	<h1>Jquery sin saber Jquery</h1>
+	<div class="flexslider">
+  		<ul class="slides">
+    		<li>
+      			<img src="slide1.jpg" />
+    		</li>
+    		<li>
+      			<img src="slide2.jpg"/>
+    		</li>
+    		<li>
+      			<img src="slide3.jpg"/>
+    		</li>
+    		<li>
+      			<img src="slide4.jpg"/>
+    		</li>
+  		</ul>
+	</div>
+	<!--scripts siempre abajo-->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script>
+		!window.jQuery && document.write('<script src="../js/libs/jquery-1.7.min.js">\/script>') 
+		//alternativa si se usa cdn y el servidor se cae entonces se usa la ruta local
+	</script>
+	<script src="flexslider/jquery.flexslider.js"></script>
+  	<script type="text/javascript">
+		$(window).load(function() {
+  			$('.flexslider').flexslider({
+    			animation: "slide"
+  			});
+		});
+	</script>
+	<script type="text/javascript">
+		window.onload=function(){
+			alert("mensaje antes de cargar la pagina");
+		}
+	</script>
+	<script type="text/javascript">
+		//mejor usar comilla simple
+		$(document).ready(function(){ //evento onready es cuando el documento esta listo (pagina)
+			$(window).load(function(){
+				alert("mensaje antes de cargar la pagina con jquery");
+			});
+			$(window).removeAddEventListener('load',function(){});
+			//agregar eventos multiples
+			$(window).on({ //con on activamos un evento
+				click : function(){
+					alert("mensaje al click");
+				},
+				dblclick : function(){
+					alert("mensaje al doble click");
+				},
+				mouseenter : function(){
+					alert("mensaje al mouse enter");
+				}
+			});
+
+			$(window).off("load",function(){}); //con off deshabilitamos un evento
+		});
+	</script>
+</body>
+</html> 

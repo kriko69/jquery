@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>triiggers</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+	<br><br><br>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<table class="table table-hover">
+					<tbody>
+						<tr>
+							<td><button class="btn btn-success" id="btn1">sin trigger</button></td>
+							<td><button class="btn btn-primary" id="btn2">con trigger</button></td>
+						</tr>
+						<tr>
+							<td><button class="btn btn-success" id="btn3">una sola vez</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#btn1").click(function(){
+				$(this).after('<p>mensaje nuevo</p>');
+			});
+			$("#btn2").click(function() {
+				$("#btn1").trigger('click');
+				/*
+				lo que hacen los triggers es ahorrar codigo, llamando al selector y evento que ya realiza lo que uno quiere hacer
+				por ejemplo si quiero que 2 botones hagan los mismo entonces solo para el primer boton realizo el evento y el 
+				segundo usa un trigger del boton que ya hace la accion
+				$(selector que ya tiene la accion).trigger(nombre del evento a copiar);
+				*/
+			});
+			$("#btn3").one('click', function() { //con one(evento,function) se realiza un evento solo una vez, la siguiente a no funciona
+				alert("mensaje solo una vez");
+			});;
+
+			$("body").mouseover(function(event) {
+				console.log(event.pageX+" "+event.pageY); //con pageX y pageY obtenemos la posicion (x,y) del mouse, se usan con el parametro de la funcion
+				console.log(event.target.nodeName); //con target.nodeName obtenemos el tag en formato string, en este caso sobre cual nos ponemos encima con el puntero
+				console.log(event.target.localName); //lo mismo que nodeName pero en minusculas
+				console.log(event.target.baseURI); //la ruta del archivo html
+				console.log(event.target);
+			});
+		});
+	</script>
+</body>
+</html>
